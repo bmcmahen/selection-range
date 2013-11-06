@@ -12,8 +12,8 @@
 ## Usage
 
 ```javascript
-position(el, {start: 5, end: 25}); // select range of el from 0 - 20
-position(el, {start: 5, end: 5}); // set the cursor at 5
+position(el, 5, 25); // select range of el from 0 - 20
+position(el, 5); // set the cursor at 5
 var pos = position(el); // get range of selection
 // pos.start = start;
 // pos.end = end;
@@ -21,7 +21,7 @@ var pos = position(el); // get range of selection
 
 ## TODO
 
-a way better api that uses arguments, and only needs one argument to actually set cursor position.
+IE compatibility. works in firefox, chrome & safari
 
 ## Credits
 
