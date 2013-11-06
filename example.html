@@ -22,11 +22,11 @@ var position = require('selection-range');
 var el = document.getElementById('content');
 
 document.getElementById('setrange').onclick = function(){
-  position(el, { start: 5, end: 25 });
+  position(el, 5, 25);
 };
 
 document.getElementById('setcursor').onclick = function(){
-  position(el, { start: 15, end: 15 });
+  position(el, 15);
 };
 
 document.getElementById('getrange').onclick = function(){

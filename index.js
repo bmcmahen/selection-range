@@ -9,55 +9,61 @@
  * @api private
  */
 
-function position(el, at){
+function position(el, start, end){
+  var selection = window.getSelection();
+
+  // get our current range
   if (1 == arguments.length) {
-    var range = window.getSelection().getRangeAt(0);
+    if (!selection.rangeCount) return;
+    var range = selection.getRangeAt(0);
     var clone = range.cloneRange();
     clone.selectNodeContents(el);
     clone.setEnd(range.endContainer, range.endOffset);
-    var end = clone.toString().length;
+    var indexes = { end : clone.toString().length };
     clone.setStart(range.startContainer, range.startOffset);
-    var start = end - clone.toString().length;
-    return { start: start, end: end };
+    indexes.start = indexes.end - clone.toString().length;
+    return indexes;
   }
 
+  // set a selection or cursor position.
+  var hasSelection = arguments.length == 3;
   var length = 0;
   var abort;
-  var sel = document.getSelection();
-  var range = document.createRange();
-  var sub;
-  var slen;
-  var hasSelection = !(at.start === at.end);
+  var ranger = document.createRange();
 
   visit(el, function(node){
     if (3 != node.nodeType) return;
-    length += node.textContent.length;
+    var textLength = node.textContent.length;
+    length += textLength;
+    var sub = length - textLength;
 
     // If we have a selection, then we need to set the
     // start position for the correct node. 
   
-    if (hasSelection && length >= at.start){
-      sub = length - node.textContent.length;
-      slen = at.start - sub;
+    if (hasSelection && length >= start){
+      var slen = start - sub;
       if (slen > 0) {
-        range.setStart(node, slen);
+        ranger.setStart(node, slen);
       }
     }
 
-    // we always have an end position, represting
-    // either the end of the selection, or the current
-    // cursor position. 
+    // if we don't have a selection, we need to
+    // set the start and end of the range to the 
+    // start index.
   
-    if (length >= at.end){
+    if (length >= (end || start)){
       if (abort) return;
       abort = true;
-      sub = length - node.textContent.length;
       if (!hasSelection){
-        range.setStart(node, at.end - sub);
+        ranger.setStart(node, start - sub);
+        ranger.setEnd(node, start - sub);
+      } else {
+        ranger.setEnd(node, end - sub);
       }
-      range.setEnd(node, at.end - sub);
-      sel.removeAllRanges();
-      sel.addRange(range);
+
+      el.focus(); // necessary for firefox
+      selection.removeAllRanges();
+      selection.addRange(ranger);
       return true;
     }
   });
