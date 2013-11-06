@@ -12,16 +12,17 @@
 ## Usage
 
 ```javascript
-position(el, 5, 25); // select range of el from 0 - 20
+position(el, 5, 25); // select range of el from 5 - 25
 position(el, 5); // set the cursor at 5
 var pos = position(el); // get range of selection
-// pos.start = start;
-// pos.end = end;
+// pos.start = start index
+// pos.end = end index
+// pos = undefined if no cursor
 ```
 
-## TODO
+## Todo
 
-IE compatibility. works in firefox, chrome & safari
+test IE compatibility. works in firefox, chrome & safari.
 
 ## Credits
 
