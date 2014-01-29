@@ -1,7 +1,25 @@
+/**
+ * Dependencies
+ */
+
 var iterator = require('dom-iterator');
 var selection = window.getSelection();
 
+/**
+ * Module exports
+ */
+
 module.exports = position;
+
+/**
+ * Get or set cursor, selection, relative to 
+ * an element.
+ * 
+ * @param  {Element} el    
+ * @param  {Number} start 
+ * @param  {Number} end   
+ * @return {Object|Undefined}       
+ */
 
 function position(el, start, end){
 
@@ -59,6 +77,15 @@ function position(el, start, end){
     }
   }
 }
+
+/**
+ * Determine if node not contained within
+ * our element.
+ * 
+ * @param  {Element} node 
+ * @param  {Element} root 
+ * @return {Boolean}      
+ */
 
 function higher(node, root){
   return !root.contains(node);
