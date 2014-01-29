@@ -23,7 +23,8 @@ module.exports = position;
 
 function position(el, start, end){
 
-  // get our current range
+  // Get our current range
+  
   if (1 == arguments.length){
     if (!selection.rangeCount) return;
     var range = selection.getRangeAt(0);
@@ -36,46 +37,51 @@ function position(el, start, end){
     return indexes;
   }
 
-  // set a selection or cursor position.
-  var setSelection = arguments.length === 3;
+  // Set a selection or cursor position.
+  
+  var setSelection = 3 === arguments.length;
   var length = 0;
-  var abort;
-  var ranger = document.createRange();
-
+  var range = document.createRange();
   var it = iterator(el).filter(Node.TEXT_NODE);
-  var next;
+  var next, startindex;
+  
   while (next = it.next()){
     if (higher(next, el)) break;
-    var textLength = next.textContent.length;
-    length += textLength;
-    var sub = length - textLength;
+    var olen = length;
+    length += next.textContent.length;
 
     // If we have a selection, then set the start position
     // for the correct next.
     
-    if (setSelection && length >= start) {
-      var slen = start - sub;
-      if (slen > 0) {
-        ranger.setStart(next, slen);
+    if (!startindex && (length >= start)) {
+      startindex = true;
+      range.setStart(next, start - olen);
+      if (!setSelection) {
+        range.collapse();
+        makeSelection(el, range);
+        break;
       }
     }
 
-    // If we don't have a selection, we need to set the
-    // start and end of the range to the start index.
-    if (length >= (end || start)){
-      if (!setSelection) {
-        ranger.setStart(next, start - sub);
-        ranger.collapse();
-      } else {
-        ranger.setEnd(next, end - sub);
-      }
-
-      el.focus();
-      selection.removeAllRanges();
-      selection.addRange(ranger);
+    if (setSelection && (length >= end)) {
+      range.setEnd(next, end - olen);
+      makeSelection(el, range);
       break;
     }
   }
+}
+
+/**
+ * add selection / insert cursor.
+ * 
+ * @param  {Element} el
+ * @param  {Range} range 
+ */
+
+function makeSelection(el, range){
+  el.focus();
+  selection.removeAllRanges();
+  selection.addRange(range);
 }
 
 /**
