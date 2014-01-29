@@ -1,7 +1,7 @@
 
 # selection-range
 
-  get or set the selction range, or cursor position, for contenteditable
+  Get or set the selection range, or cursor position.
 
 ## Installation
 
@@ -20,13 +20,12 @@ var pos = position(el); // get range of selection
 // pos = undefined if no cursor
 ```
 
-## Todo
+## Tests
 
-test IE compatibility. works in firefox, chrome & safari.
-
-## Credits
-
-based on code by yields at [yields/editable](https://github.com/yields/editable).
+```
+npm install component-test
+make test
+```
 
 ## License
 

@@ -2,10 +2,15 @@
   "name": "selection-range",
   "repo": "bmcmahen/selection-range",
   "description": "get or set the selction range, or cursor position, for contenteditable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [],
-  "dependencies": {},
-  "development": {},
+  "dependencies": {
+    "matthewmueller/dom-iterator": "*"
+  },
+  "development": {
+    "component/assert": "*",
+    "component/domify": "*"
+  },
   "license": "MIT",
   "main": "index.js",
   "scripts": [
