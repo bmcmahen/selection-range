@@ -42,11 +42,10 @@ function position(el, start, end){
   var setSelection = 3 === arguments.length;
   var length = 0;
   var range = document.createRange();
-  var it = iterator(el).filter(Node.TEXT_NODE);
+  var it = iterator(el).select(Node.TEXT_NODE);
   var next, startindex;
   
   while (next = it.next()){
-    if (higher(next, el)) break;
     var olen = length;
     length += next.textContent.length;
 
@@ -82,17 +81,4 @@ function makeSelection(el, range){
   el.focus();
   selection.removeAllRanges();
   selection.addRange(range);
-}
-
-/**
- * Determine if node not contained within
- * our element.
- * 
- * @param  {Element} node 
- * @param  {Element} root 
- * @return {Boolean}      
- */
-
-function higher(node, root){
-  return !root.contains(node);
 }
