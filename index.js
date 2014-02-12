@@ -42,7 +42,7 @@ function position(el, start, end){
   var setSelection = 3 === arguments.length;
   var length = 0;
   var range = document.createRange();
-  var it = iterator(el).select(Node.TEXT_NODE);
+  var it = iterator(el).select(Node.TEXT_NODE).revisit(false);
   var next, startindex;
   
   while (next = it.next()){
