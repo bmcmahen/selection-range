@@ -12,19 +12,19 @@ var selection = window.getSelection();
 module.exports = position;
 
 /**
- * Get or set cursor, selection, relative to 
+ * Get or set cursor, selection, relative to
  * an element.
- * 
- * @param  {Element} el    
- * @param  {Number} start 
- * @param  {Number} end   
- * @return {Object|Undefined}       
+ *
+ * @param  {Element} el
+ * @param  {Number} start
+ * @param  {Number} end
+ * @return {Object|Undefined}
  */
 
 function position(el, start, end){
 
   // Get our current range
-  
+
   if (1 == arguments.length){
     if (!selection.rangeCount) return;
     var range = selection.getRangeAt(0);
@@ -38,20 +38,20 @@ function position(el, start, end){
   }
 
   // Set a selection or cursor position.
-  
+
   var setSelection = 3 === arguments.length;
   var length = 0;
   var range = document.createRange();
   var it = iterator(el).select(Node.TEXT_NODE).revisit(false);
   var next, startindex;
-  
+
   while (next = it.next()){
     var olen = length;
     length += next.textContent.length;
 
     // If we have a selection, then set the start position
     // for the correct next.
-    
+
     if (!startindex && (length >= start)) {
       startindex = true;
       range.setStart(next, start - olen);
@@ -72,9 +72,9 @@ function position(el, start, end){
 
 /**
  * add selection / insert cursor.
- * 
+ *
  * @param  {Element} el
- * @param  {Range} range 
+ * @param  {Range} range
  */
 
 function makeSelection(el, range){
