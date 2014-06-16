@@ -1,0 +1,21 @@
+{
+  "name": "selection-range",
+  "description": "get or set the selction range, or cursor position, for contenteditable",
+  "version": "0.0.3",
+  "keywords": [
+  ],
+  "dependencies": {
+    "dom-iterator": "0.2.1"
+  },
+  "component": {
+    "scripts": {
+      "selection-range/index.js": "index.js"
+    }
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmcmahen/selection-range.git"
+  }
+}
