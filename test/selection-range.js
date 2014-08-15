@@ -18,7 +18,7 @@ describe('selection-range', function(){
   });
 
   it('should handle empty spaces', function () {
-    sRange(el, el.textContent.length - 1);
+    sRange(el, { start: el.textContent.length - 1 });
     var r = sRange(el);
     assert(r.start === el.textContent.length - 1);
     assert(r.end === el.textContent.length - 1);
@@ -32,7 +32,7 @@ describe('selection-range', function(){
   });
 
   it('should get the proper ranges for cursor', function(){
-    sRange(el, 0);
+    sRange(el, { start: 0 });
     var r = sRange(el);
     assert(r.start === 0);
     assert(r.end === 0);
