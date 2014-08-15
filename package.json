@@ -1,11 +1,11 @@
 {
   "name": "selection-range",
   "description": "get or set the selction range, or cursor position, for contenteditable",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "keywords": [
   ],
   "dependencies": {
-    "dom-iterator": "0.2.1"
+    "dom-iterator": "0.3.0"
   },
   "component": {
     "scripts": {
