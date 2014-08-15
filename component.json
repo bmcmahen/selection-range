@@ -1,7 +1,7 @@
 {
   "name": "selection-range",
   "repo": "bmcmahen/selection-range",
-  "description": "get or set the selction range, or cursor position, for contenteditable",
+  "description": "get or set the selection range, or cursor position, for contenteditable",
   "version": "1.0.0",
   "keywords": [],
   "dependencies": {
