@@ -7,7 +7,8 @@ describe('selection-range', function(){
   var el;
 
   beforeEach(function(){
-    el = domify('<div><p>hi! my name is s<strong>a<em>ll</em>y</strong>.</p><p><br> </p></div>');
+    el = domify('<div><p>hi! my name is s<strong>a<em>ll</em>y</strong>.</p>' +
+    '<p class="bacon"><br> </p><p><br> </p><p>hello world</p></div>');
     document.body.appendChild(el);
     sel = selection();
     sel.removeAllRanges();
@@ -23,6 +24,23 @@ describe('selection-range', function(){
     assert(r.start === el.textContent.length - 1);
     assert(r.end === el.textContent.length - 1);
   });
+
+  it('should set at the beginning of an element if specified', function () {
+    var ps = el.querySelectorAll('p');
+    sRange(el, { start: ps[0].textContent.length, atStart: true });
+    var r = sRange(el);
+    assert(r.atStart == true);
+    var r = selection().getRangeAt(0);
+    assert(r.startContainer.parentNode == ps[1]);
+  });
+
+  it('should set at the end of an element if beginning not specified', function(){
+    var ps = el.querySelectorAll('p');
+    sRange(el, { start: ps[0].textContent.length });
+    var r = sRange(el);
+    var r = selection().getRangeAt(0);
+    assert(r.startContainer.parentNode == ps[0]);
+  })
 
   it('should get the proper ranges for selection', function(){
     sRange(el, { start: 5, end: 10});
