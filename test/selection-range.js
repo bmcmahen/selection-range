@@ -25,7 +25,7 @@ describe('selection-range', function(){
   });
 
   it('should get the proper ranges for selection', function(){
-    sRange(el, 5, 10);
+    sRange(el, { start: 5, end: 10});
     var r = sRange(el);
     assert(r.start === 5);
     assert(r.end === 10);
@@ -39,14 +39,15 @@ describe('selection-range', function(){
   });
 
   it('should set cursor to specific spot', function(){
-    sRange(el, 0);
+    sRange(el, { start: 0 });
     var r = sRange(el);
     assert(r.start === 0);
     assert(r.end === 0);
   });
 
   it('should set selection', function(){
-    sRange(el, 10, 15);
+    var pos = { start: 10, end: 15 };
+    sRange(el, pos);
     var r = sRange(el);
     assert(r.start === 10);
     assert(r.end === 15);
