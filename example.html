@@ -6,32 +6,32 @@
 <body>
 
 <article>
-  <div id='content' contenteditable='true'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  <div id='content' contenteditable='true'>
+    <p>hello world</p>
+    <p><br> </p>
+    <p><br> </p>
+    <p>Another paragraph</p>
   </div>
 </article>
-<button id='setrange'> set range </button>
-<button id='setcursor'> set cursor </button>
-<button id='getrange'> get range </button>
+<button id='setrange'> restore range </button>
+<button id='getrange'> save range </button>
 <script src='build/build.js'></script>
 <script>
 var position = require('selection-range');
 var el = document.getElementById('content');
 
-document.getElementById('setrange').onclick = function(){
-  position(el, 25, 200);
-};
+var r = null;
 
-document.getElementById('setcursor').onclick = function(){
-  position(el, 45);
+document.getElementById('setrange').onclick = function(){
+  if (r) {
+    console.log('setting range to', r);
+    position(el, r.start, r.end);
+  }
 };
 
 document.getElementById('getrange').onclick = function(){
-  console.log(position(el));
+  r = position(el);
+  console.log('saving range', r);
 };
 </script>
 </body>

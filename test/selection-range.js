@@ -7,7 +7,7 @@ describe('selection-range', function(){
   var el;
 
   beforeEach(function(){
-    el = domify('<p>hi! my name is s<strong>a<em>ll</em>y</strong>.</p>');
+    el = domify('<div><p>hi! my name is s<strong>a<em>ll</em>y</strong>.</p><p><br> </p></div>');
     document.body.appendChild(el);
     sel = selection();
     sel.removeAllRanges();
@@ -17,10 +17,16 @@ describe('selection-range', function(){
     document.body.removeChild(el);
   });
 
+  it('should handle empty spaces', function () {
+    sRange(el, el.textContent.length - 1);
+    var r = sRange(el);
+    assert(r.start === el.textContent.length - 1);
+    assert(r.end === el.textContent.length - 1);
+  });
+
   it('should get the proper ranges for selection', function(){
     sRange(el, 5, 10);
     var r = sRange(el);
-    console.log(r);
     assert(r.start === 5);
     assert(r.end === 10);
   });
