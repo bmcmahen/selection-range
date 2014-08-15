@@ -5,9 +5,8 @@
 
 ## Installation
 
-  Install with [component(1)](http://component.io):
-
     $ component install bmcmahen/selection-range
+    $ npm install selection-range
 
 ## Usage
 
