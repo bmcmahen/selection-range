@@ -1,6 +1,6 @@
-
 build: components index.js
 	@component build --dev
+	@http-server
 
 components: component.json
 	@component install --dev

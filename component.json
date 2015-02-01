@@ -2,7 +2,7 @@
   "name": "selection-range",
   "repo": "bmcmahen/selection-range",
   "description": "get or set the selection range, or cursor position, for contenteditable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [],
   "dependencies": {
     "matthewmueller/dom-iterator": "0.3.0"

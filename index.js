@@ -64,7 +64,7 @@ function position(el, pos){
       startindex = true;
       range.setStart(next, start - olen);
       if (!setSelection) {
-        range.collapse();
+        range.collapse(true);
         makeSelection(el, range);
         break;
       }
