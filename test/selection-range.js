@@ -73,6 +73,13 @@ describe('selection-range', function(){
     assert(str == 'e is ');
   });
 
+  it('should return selected nodes', function(){
+    sRange(el, { start: 0, end: el.textContent.length - 1 });
+    var r = sRange(el);
+    assert(r.startContainer.nodeName === 'P');
+    assert(r.endContainer.nodeName === 'P');
+    assert(r.commonAncestorContainer.nodeName === 'DIV');
+  });
 
 });
 

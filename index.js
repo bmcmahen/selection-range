@@ -37,6 +37,9 @@ function position(el, pos){
     clone.setStart(range.startContainer, range.startOffset);
     indexes.start = indexes.end - clone.toString().length;
     indexes.atStart = clone.startOffset === 0;
+    indexes.commonAncestorContainer = clone.commonAncestorContainer;
+    indexes.endContainer = clone.endContainer;
+    indexes.startContainer = clone.startContainer;
     return indexes;
   }
 
