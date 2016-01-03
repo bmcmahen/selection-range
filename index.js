@@ -50,8 +50,8 @@ function position(el, pos){
   var it = iterator(el).select(Node.TEXT_NODE).revisit(false);
   var next;
   var startindex;
-  var start = pos.start;
-  var end = pos.end;
+  var start = pos.start > el.textContent.length ? el.textContent.length : pos.start;
+  var end = pos.end > el.textContent.length ? el.textContent.length : pos.end;
   var atStart = pos.atStart;
 
   while (next = it.next()){
