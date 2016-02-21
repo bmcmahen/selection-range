@@ -81,6 +81,15 @@ describe('selection-range', function(){
     assert(r.commonAncestorContainer.nodeName === 'DIV');
   });
 
+  it('should not exceede the text length', function(){
+    var p = el.textContent.length + 1;
+    var pos = { start: p, end: p };
+    sRange(el, pos);
+    var r = sRange(el);
+    assert(r.start === el.textContent.length);
+    assert(r.end ===  el.textContent.length);
+  });
+
 });
 
 function selectAt(elem, str) {
